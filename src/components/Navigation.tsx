@@ -1,4 +1,4 @@
-import React from "react";
+import { useContext } from "react";
 import { Nav } from "react-bootstrap";
 import logo from "../images/trustscout.png";
 
@@ -6,13 +6,12 @@ import SignOutButton from "./SignOut";
 
 import AuthContext from "../contexts/AuthContext";
 
-const Navigation = () => (
-  <AuthContext.Consumer>
-    {(authUser) => authUser && <NavigationAuth userInfo={authUser} />}
-  </AuthContext.Consumer>
-);
+const Navigation = () => {
+  const authContext: any = useContext(AuthContext);
+  return <>{authContext?.email !== "" && <NavigationAuth />}</>;
+};
 
-const NavigationAuth = ({ userInfo }: any) => (
+const NavigationAuth = () => (
   <Nav
     color="dark"
     className="p-3"
