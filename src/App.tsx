@@ -13,7 +13,6 @@ const App = () => {
   return (
     <WithAuthentication>
       <BrowserRouter>
-        {/* <Container style={{ minHeight: "100vh" }}> */}
         <Navigation />
         <div>
           <Route exact path={routes.LANDING_PAGE} component={SignIn} />

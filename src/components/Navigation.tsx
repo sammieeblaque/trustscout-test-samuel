@@ -21,9 +21,6 @@ const NavigationAuth = () => (
     <Nav.Item>
       <img src={logo} height="30px" width="160px" alt="logo" />
     </Nav.Item>
-    {/* <Nav.Item>
-      <Link to={routes.LANDING_PAGE}> Landing </Link>
-    </Nav.Item> */}
     <Nav.Item style={{ marginRight: "40px" }}>
       <SignOutButton />
     </Nav.Item>

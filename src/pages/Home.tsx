@@ -1,7 +1,5 @@
 import { useEffect, useState, useContext } from "react";
 import WithAuthorization from "../components/withAuthorization";
-// import { Button } from "react-bootstrap";
-
 import AuthContext from "../contexts/AuthContext";
 import { db } from "../firebase";
 
@@ -11,9 +9,6 @@ interface IUsers {
   count: number;
   firedbCount: number;
 }
-// interface ILoggedProps {
-//   loggedUser?: any;
-// }
 
 const Home = () => {
   const loggedUser: any = useContext(AuthContext);
@@ -119,4 +114,4 @@ const Home = () => {
     </>
   );
 };
-export default Home; //grants authorization to open endpoint if an user is signed in
+export default Home;
