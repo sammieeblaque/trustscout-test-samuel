@@ -1,4 +1,5 @@
-import React, { Component, SyntheticEvent } from "react";
+import React, { SyntheticEvent, useState } from "react";
+import { useHistory } from "react-router-dom"
 import { Button, Card, Form, Alert } from "react-bootstrap";
 
 import * as routes from "../routes";
@@ -12,64 +13,58 @@ interface IinitialState {
   showAlert: boolean;
 }
 
-interface IUserProps {
-  history?: any;
-}
-
-class SignupForm extends Component<IUserProps> {
-  state: IinitialState = {
-    username: "",
-    email: "",
-    password: "",
+const SignupForm = () => {
+  const history = useHistory();
+  const [data, setData] = useState<IinitialState>({
+    username: '',
+    email: '',
+    password: '',
     error: null,
-    showAlert: false,
-  };
+    showAlert: false
+  })
 
-  onSubmit = async (event: SyntheticEvent) => {
-    event.preventDefault();
-    const { username, password, email } = this.state;
-    const { history } = this.props;
+  const onSubmit = async(e: any) => {
+    e.preventDefault();
     try {
+      const { email, password, username } = data;
       const authUser = await auth.doCreateUserWithEmailAndPassword(
         email,
         password
       );
       await db.doCreateUser(authUser.user?.uid ?? "", username, email);
-      await this.setState({ ...this.state });
+      await setData({ ...data });
       // console.log(this.state);
       history.push(routes.HOME);
     } catch (error) {
-      this.setState({ error: error, showAlert: true });
+      setData({ ...data, error: error, showAlert: true });
     }
   };
 
-  render() {
-    const { username, password, email, showAlert, error } = this.state;
+  const setUserName = (e: any) => setData({ ...data, username: e.target.value });
+
     return (
       <>
         <div data-testid="signup">
           <Card className="no__border left__pad">
             <Card.Body className="w__90">
               <h2 className="text-center mb-4">Sign Up</h2>
-              {showAlert && (
+              {data.showAlert && (
                 <Alert
                   variant="danger"
-                  onClose={() => this.setState({ showAlert: false })}
+                  onClose={() => setData({ ...data, showAlert: false })}
                   dismissible
                 >
-                  {error.message}
+                  {data.error.message}
                 </Alert>
               )}
-              <Form onSubmit={this.onSubmit}>
+              <Form onSubmit={onSubmit}>
                 <Form.Group id="name">
                   <Form.Label>Name</Form.Label>
                   <Form.Control
                     type="text"
                     placeholder="John Doe"
-                    value={username}
-                    onChange={(e) =>
-                      this.setState({ username: e.target.value })
-                    }
+                    value={data.username}
+                    onChange={setUserName}
                     required
                   />
                 </Form.Group>

@@ -1,5 +1,5 @@
 import React, { FC } from "react";
-import { SignInForm } from "../components/SignInForm";
+import SignInForm from "../components/SignInForm";
 // import { useHistory } from "react-router-dom";
 import background from "../images/background.jpg";
 import logo from "../images/trustscout.png";

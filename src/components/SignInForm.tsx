@@ -1,38 +1,37 @@
 import { useState } from "react";
-import { Button, Form, Card, Alert } from "react-bootstrap";
-import {useHistory } from 'react-router-dom'
+import { Button, Form, Card } from "react-bootstrap";
+import { useHistory } from "react-router-dom";
 import { SignUpLink } from "./SignupForm";
 
 import * as routes from "../routes";
 import { auth } from "../firebase";
 
-
-
 const SignInForm = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState<Object>({});
-  const [showAlert, setShowAlert] = useState(false);
-  const history = useHistory()
-  
-   const onSubmit = async (e: any) => {
+  // const [error, setError] = useState<Object>({});
+  // const [showAlert, setShowAlert] = useState(false);
+  const history = useHistory();
+
+  const onSubmit = async (e: any) => {
     e.preventDefault();
     try {
       auth.doSignInWithEmailAndPassword(email, password);
-      Promise.all([setEmail(""), setPassword("")])
-      history.push(routes.HOME)
+      Promise.all([setEmail(""), setPassword("")]);
+      history.push(routes.HOME);
     } catch (error) {
-      Promise.all([setError(error),setShowAlert(true)])
+      // Promise.all([setError(error), setShowAlert(true)]);
+      console.error(error);
     }
   };
 
   return (
     <>
-       <div data-testid="signin">
-          <Card className="no__border left__pad">
-            <Card.Body className="w__90">
-              <h2 className="text-center mb-4">Sign In</h2>
-            {showAlert && (
+      <div data-testid="signin">
+        <Card className="no__border left__pad">
+          <Card.Body className="w__90">
+            <h2 className="text-center mb-4">Sign In</h2>
+            {/* {showAlert && (
               <Alert
                 variant="danger"
                 onClose={() => setShowAlert(false)}
@@ -40,7 +39,7 @@ const SignInForm = () => {
               >
                 { error?.message}
               </Alert>
-            )}
+            )} */}
             <Form onSubmit={onSubmit}>
               <Form.Group id="email">
                 <Form.Label>Email</Form.Label>
@@ -56,9 +55,7 @@ const SignInForm = () => {
                 <Form.Control
                   type="password"
                   value={password}
-                  onChange={(e) =>
-                    setPassword(e.target.value)
-                  }
+                  onChange={(e) => setPassword(e.target.value)}
                   required
                 />
               </Form.Group>
@@ -73,7 +70,7 @@ const SignInForm = () => {
         </Card>
       </div>
     </>
-  )
-}
+  );
+};
 
-export { SignInForm };
+export default SignInForm;
