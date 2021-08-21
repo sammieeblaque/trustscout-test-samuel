@@ -3,7 +3,7 @@ import background from "../images/background.jpg";
 import logo from "../images/trustscout.png";
 
 const SignIn = () => (
-  <div>
+  <>
     <div className="row">
       <div className="col-md-8 m__display">
         <img src={background} className="full__size" alt="Background" />
@@ -20,7 +20,7 @@ const SignIn = () => (
         </div>
       </div>
     </div>
-  </div>
+  </>
 );
 
 export default SignIn;

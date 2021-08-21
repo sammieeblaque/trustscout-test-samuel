@@ -8,24 +8,9 @@ import AuthContext from "../contexts/AuthContext";
 
 const Navigation = () => (
   <AuthContext.Consumer>
-    {(authUser) =>
-      authUser ? <NavigationAuth userInfo={authUser} /> : <NavigationNonAuth />
-    }
+    {(authUser) => authUser && <NavigationAuth userInfo={authUser} />}
   </AuthContext.Consumer>
 );
-
-const NavigationNonAuth = () => (
-  <Nav color="light" navbar style={{ display: "none" }}>
-    <Nav.Item>{/* <Link to={routes.LANDING_PAGE}> Landing </Link> */}</Nav.Item>
-    {/* <Nav className="ml-auto" navbar> */}
-    <Nav.Item>
-      <Nav.Link>{/* <Link to={routes.LANDING_PAGE}>Sign In</Link> */}</Nav.Link>
-    </Nav.Item>
-    {/* </Nav> */}
-  </Nav>
-);
-
-export default Navigation;
 
 const NavigationAuth = ({ userInfo }: any) => (
   <Nav
@@ -46,3 +31,5 @@ const NavigationAuth = ({ userInfo }: any) => (
     {/* </Nav> */}
   </Nav>
 );
+
+export default Navigation;

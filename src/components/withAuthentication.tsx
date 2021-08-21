@@ -1,35 +1,21 @@
-import React from "react";
+import { useEffect, useState } from "react";
 import { firebase } from "../firebase";
 
 import AuthContext from "../contexts/AuthContext"; //using provider's context api
 
-const withAuthentication = (Component: any) => {
-  class WithAuthentication extends React.Component {
-    state = {
-      authUser: null,
-    };
+const WithAuthentication = ({ children }: any) => {
+  const [authUser, setAuthUser] = useState<null | any>();
 
-    componentDidMount() {
-      firebase.auth.onAuthStateChanged((authUser) => {
-        authUser
-          ? this.setState({ authUser })
-          : this.setState({ authUser: null });
-      });
-    }
-
-    render() {
-      const { authUser } = this.state;
-      // console.log("withAuthentication file authUser", authUser);
-      return (
-        //   passing down the authUser value, so other components can consume it
-        <AuthContext.Provider value={authUser}>
-          <Component {...this.props} />
-        </AuthContext.Provider>
-      );
-    }
-  }
-
-  return WithAuthentication;
+  useEffect(() => {
+    firebase.auth.onAuthStateChanged((user) =>
+      user ? setAuthUser(user) : setAuthUser(null)
+    );
+  });
+  return (
+    <>
+      <AuthContext.Provider value={authUser}>{children}</AuthContext.Provider>
+    </>
+  );
 };
 
-export default withAuthentication;
+export default WithAuthentication;
