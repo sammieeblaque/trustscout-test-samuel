@@ -1,52 +1,67 @@
 import { useState } from "react";
-import { Button, Form, Card } from "react-bootstrap";
+import { Button, Form, Card, Alert } from "react-bootstrap";
 import { useHistory } from "react-router-dom";
 import { SignUpLink } from "./SignupForm";
 
 import * as routes from "../routes";
 import { auth } from "../firebase";
 
+interface IinitialState {
+  email: string;
+  password: string;
+  error: any;
+  showAlert: boolean;
+}
+
 const SignInForm = () => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  // const [error, setError] = useState<Object>({});
-  // const [showAlert, setShowAlert] = useState(false);
   const history = useHistory();
+  const [data, setData] = useState<IinitialState>({
+    email: "",
+    password: "",
+    error: null,
+    showAlert: false,
+  });
 
   const onSubmit = async (e: any) => {
     e.preventDefault();
+    const { email, password } = data;
     try {
-      auth.doSignInWithEmailAndPassword(email, password);
-      Promise.all([setEmail(""), setPassword("")]);
+      await auth.doSignInWithEmailAndPassword(email, password);
+      await setData({ ...data });
       history.push(routes.HOME);
     } catch (error) {
-      // Promise.all([setError(error), setShowAlert(true)]);
+      await setData({ ...data, error: error, showAlert: true });
       console.error(error);
     }
   };
 
+  const setEmail = (e: any) => setData({ ...data, email: e.target.value });
+  const setPassword = (e: any) =>
+    setData({ ...data, password: e.target.value });
+
+  const { password, email, showAlert, error } = data;
   return (
     <>
       <div data-testid="signin">
         <Card className="no__border left__pad">
           <Card.Body className="w__90">
             <h2 className="text-center mb-4">Sign In</h2>
-            {/* {showAlert && (
+            {showAlert && (
               <Alert
                 variant="danger"
-                onClose={() => setShowAlert(false)}
+                onClose={() => setData({ ...data, showAlert: false })}
                 dismissible
               >
-                { error?.message}
+                {error.message}
               </Alert>
-            )} */}
+            )}
             <Form onSubmit={onSubmit}>
               <Form.Group id="email">
                 <Form.Label>Email</Form.Label>
                 <Form.Control
                   placeholder="john@xyz.com"
                   value={email}
-                  onChange={(e) => setEmail(e.target.value)}
+                  onChange={setEmail}
                   required
                 />
               </Form.Group>
@@ -55,7 +70,7 @@ const SignInForm = () => {
                 <Form.Control
                   type="password"
                   value={password}
-                  onChange={(e) => setPassword(e.target.value)}
+                  onChange={setPassword}
                   required
                 />
               </Form.Group>

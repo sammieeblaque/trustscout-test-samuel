@@ -1,9 +1,5 @@
 import { db } from "./firebase";
 
-// interface Id {
-//   id?: number | undefined;
-// }
-
 //create an user and store it at users/id path (it's an asynchronous func)
 export const doCreateUser = (
   id: string,

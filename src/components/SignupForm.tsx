@@ -1,5 +1,5 @@
-import React, { SyntheticEvent, useState } from "react";
-import { useHistory } from "react-router-dom"
+import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import { Button, Card, Form, Alert } from "react-bootstrap";
 
 import * as routes from "../routes";
@@ -16,14 +16,14 @@ interface IinitialState {
 const SignupForm = () => {
   const history = useHistory();
   const [data, setData] = useState<IinitialState>({
-    username: '',
-    email: '',
-    password: '',
+    username: "",
+    email: "",
+    password: "",
     error: null,
-    showAlert: false
-  })
+    showAlert: false,
+  });
 
-  const onSubmit = async(e: any) => {
+  const onSubmit = async (e: any) => {
     e.preventDefault();
     try {
       const { email, password, username } = data;
@@ -40,71 +40,74 @@ const SignupForm = () => {
     }
   };
 
-  const setUserName = (e: any) => setData({ ...data, username: e.target.value });
+  const setUserName = (e: any) =>
+    setData({ ...data, username: e.target.value });
+  const setEmail = (e: any) => setData({ ...data, email: e.target.value });
+  const setPassword = (e: any) =>
+    setData({ ...data, password: e.target.value });
 
-    return (
-      <>
-        <div data-testid="signup">
-          <Card className="no__border left__pad">
-            <Card.Body className="w__90">
-              <h2 className="text-center mb-4">Sign Up</h2>
-              {data.showAlert && (
-                <Alert
-                  variant="danger"
-                  onClose={() => setData({ ...data, showAlert: false })}
-                  dismissible
-                >
-                  {data.error.message}
-                </Alert>
-              )}
-              <Form onSubmit={onSubmit}>
-                <Form.Group id="name">
-                  <Form.Label>Name</Form.Label>
-                  <Form.Control
-                    type="text"
-                    placeholder="John Doe"
-                    value={data.username}
-                    onChange={setUserName}
-                    required
-                  />
-                </Form.Group>
-                <Form.Group id="email">
-                  <Form.Label>Email</Form.Label>
-                  <Form.Control
-                    placeholder="john@xyz.com"
-                    value={email}
-                    onChange={(e) => this.setState({ email: e.target.value })}
-                    required
-                  />
-                </Form.Group>
-                <Form.Group id="password">
-                  <Form.Label>Password</Form.Label>
-                  <Form.Control
-                    type="password"
-                    value={password}
-                    onChange={(e) =>
-                      this.setState({ password: e.target.value })
-                    }
-                    required
-                  />
-                </Form.Group>
-                <Button className="w-100 button__color" type="submit">
-                  Sign Up
-                </Button>
-                <div className="text-center">
-                  <p>
-                    Already have an account?{" "}
-                    <a href={routes.LANDING_PAGE}>Sign In</a>
-                  </p>
-                </div>
-              </Form>
-            </Card.Body>
-          </Card>
-        </div>
-      </>
-    );
-  }
-}
+  const { username, password, email, showAlert, error } = data;
+
+  return (
+    <>
+      <div data-testid="signup">
+        <Card className="no__border left__pad">
+          <Card.Body className="w__90">
+            <h2 className="text-center mb-4">Sign Up</h2>
+            {showAlert && (
+              <Alert
+                variant="danger"
+                onClose={() => setData({ ...data, showAlert: false })}
+                dismissible
+              >
+                {error.message}
+              </Alert>
+            )}
+            <Form onSubmit={onSubmit}>
+              <Form.Group id="name">
+                <Form.Label>Name</Form.Label>
+                <Form.Control
+                  type="text"
+                  placeholder="John Doe"
+                  value={username}
+                  onChange={setUserName}
+                  required
+                />
+              </Form.Group>
+              <Form.Group id="email">
+                <Form.Label>Email</Form.Label>
+                <Form.Control
+                  placeholder="john@xyz.com"
+                  value={email}
+                  onChange={setEmail}
+                  required
+                />
+              </Form.Group>
+              <Form.Group id="password">
+                <Form.Label>Password</Form.Label>
+                <Form.Control
+                  type="password"
+                  value={password}
+                  onChange={setPassword}
+                  required
+                />
+              </Form.Group>
+              <Button className="w-100 button__color" type="submit">
+                Sign Up
+              </Button>
+              <div className="text-center">
+                <p>
+                  Already have an account?{" "}
+                  <a href={routes.LANDING_PAGE}>Sign In</a>
+                </p>
+              </div>
+            </Form>
+          </Card.Body>
+        </Card>
+      </div>
+    </>
+  );
+};
 
 const SignUpLink = () => (
   <p>
