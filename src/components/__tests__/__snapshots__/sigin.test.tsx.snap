@@ -1,0 +1,148 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Matches Snapshot 1`] = `
+<div
+  data-testid="signin"
+>
+  <div
+    className="no__border left__pad card"
+  >
+    <div
+      className="w__90 card-body"
+    >
+      <h2
+        className="text-center mb-4"
+      >
+        Sign In
+      </h2>
+      <form
+        className=""
+        onSubmit={[Function]}
+      >
+        <div
+          className="form-group"
+          id="email"
+        >
+          <label
+            className="form-label"
+          >
+            Email
+          </label>
+          <input
+            className="form-control"
+            onChange={[Function]}
+            placeholder="john@xyz.com"
+            required={true}
+            value=""
+          />
+        </div>
+        <div
+          className="form-group"
+          id="password"
+        >
+          <label
+            className="form-label"
+          >
+            Password
+          </label>
+          <input
+            className="form-control"
+            onChange={[Function]}
+            required={true}
+            type="password"
+            value=""
+          />
+        </div>
+        <button
+          className="w-100 button__color btn btn-primary"
+          disabled={false}
+          type="submit"
+        >
+          Sign In
+        </button>
+        <div
+          className="text-center"
+        />
+      </form>
+    </div>
+  </div>
+</div>
+`;
+
+exports[`Should match snapshot 1`] = `
+<div
+  data-testid="signin"
+>
+  <div
+    className="no__border left__pad card"
+  >
+    <div
+      className="w__90 card-body"
+    >
+      <h2
+        className="text-center mb-4"
+      >
+        Sign In
+      </h2>
+      <form
+        className=""
+        onSubmit={[Function]}
+      >
+        <div
+          className="form-group"
+          id="email"
+        >
+          <label
+            className="form-label"
+          >
+            Email
+          </label>
+          <input
+            className="form-control"
+            onChange={[Function]}
+            placeholder="john@xyz.com"
+            required={true}
+            value=""
+          />
+        </div>
+        <div
+          className="form-group"
+          id="password"
+        >
+          <label
+            className="form-label"
+          >
+            Password
+          </label>
+          <input
+            className="form-control"
+            onChange={[Function]}
+            required={true}
+            type="password"
+            value=""
+          />
+        </div>
+        <button
+          className="w-100 button__color btn btn-primary"
+          disabled={false}
+          type="submit"
+        >
+          Sign In
+        </button>
+        <div
+          className="text-center"
+        >
+          <p>
+            Don't have an account? 
+            <a
+              href="/signup"
+            >
+              Sign Up
+            </a>
+          </p>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+`;
