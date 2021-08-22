@@ -23,10 +23,12 @@ const SignupForm = () => {
     showAlert: false,
   });
 
+  const { username, password, email, showAlert, error } = data;
+
   const onSubmit = async (e: any) => {
     e.preventDefault();
     try {
-      const { email, password, username } = data;
+      // const { email, password, username } = data;
       const authUser = await auth.doCreateUserWithEmailAndPassword(
         email,
         password
@@ -45,9 +47,6 @@ const SignupForm = () => {
   const setEmail = (e: any) => setData({ ...data, email: e.target.value });
   const setPassword = (e: any) =>
     setData({ ...data, password: e.target.value });
-
-  const { username, password, email, showAlert, error } = data;
-
   return (
     <>
       <div data-testid="signup">
