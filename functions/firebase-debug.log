@@ -1,0 +1,22 @@
+[debug] [2021-08-22T18:47:25.334Z] ----------------------------------------------------------------------
+[debug] [2021-08-22T18:47:25.336Z] Command:       /usr/local/bin/node /usr/local/bin/firebase deploy --only functions
+[debug] [2021-08-22T18:47:25.337Z] CLI Version:   9.16.5
+[debug] [2021-08-22T18:47:25.337Z] Platform:      darwin
+[debug] [2021-08-22T18:47:25.337Z] Node Version:  v14.17.5
+[debug] [2021-08-22T18:47:25.338Z] Time:          Sun Aug 22 2021 19:47:25 GMT+0100 (West Africa Standard Time)
+[debug] [2021-08-22T18:47:25.338Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2021-08-22T18:47:25.399Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2021-08-22T18:47:25.400Z] > authorizing via signed-in user (odianoseairehrour@gmail.com)
+[debug] [2021-08-22T18:47:25.400Z] [iam] checking project trustscout-samuel-4da7d for permissions ["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]
+[debug] [2021-08-22T18:47:25.402Z] >>> HTTP REQUEST POST https://cloudresourcemanager.googleapis.com/v1/projects/trustscout-samuel-4da7d:testIamPermissions  
+ {"permissions":["cloudfunctions.functions.create","cloudfunctions.functions.delete","cloudfunctions.functions.get","cloudfunctions.functions.list","cloudfunctions.functions.update","cloudfunctions.operations.get","firebase.projects.get"]}
+[debug] [2021-08-22T18:47:26.979Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 22 Aug 2021 18:47:29 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","server-timing":"gfet4t7; dur=1093","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[debug] [2021-08-22T18:47:26.980Z] >>> HTTP REQUEST POST https://iam.googleapis.com/v1/projects/trustscout-samuel-4da7d/serviceAccounts/trustscout-samuel-4da7d@appspot.gserviceaccount.com:testIamPermissions  
+ {"permissions":["iam.serviceAccounts.actAs"]}
+[debug] [2021-08-22T18:47:28.306Z] <<< HTTP RESPONSE 200 {"content-type":"application/json; charset=UTF-8","vary":"X-Origin, Referer, Origin,Accept-Encoding","date":"Sun, 22 Aug 2021 18:47:30 GMT","server":"ESF","cache-control":"private","x-xss-protection":"0","x-frame-options":"SAMEORIGIN","x-content-type-options":"nosniff","alt-svc":"h3=\":443\"; ma=2592000,h3-29=\":443\"; ma=2592000,h3-T051=\":443\"; ma=2592000,h3-Q050=\":443\"; ma=2592000,h3-Q046=\":443\"; ma=2592000,h3-Q043=\":443\"; ma=2592000,quic=\":443\"; ma=2592000; v=\"46,43\"","accept-ranges":"none","transfer-encoding":"chunked"}
+[info] 
+[info] === Deploying to 'trustscout-samuel-4da7d'...
+[info] 
+[info] i  deploying functions 
+[info] Running command: npm --prefix "$RESOURCE_DIR" run lint
